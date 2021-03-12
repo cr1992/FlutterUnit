@@ -6,8 +6,8 @@ import 'package:flutter_unit/views/components/project/overlay_tool_wrapper.dart'
 import 'package:flutter_unit/views/pages/app/unit_bottom_bar.dart';
 import 'package:flutter_unit/views/pages/category/collect_page.dart';
 import 'package:flutter_unit/views/pages/category/home_right_drawer.dart';
-import 'package:flutter_unit/views/pages/gallery/gallery_unit.dart';
-import 'package:flutter_unit/views/pages/me/me_page.dart';
+import 'package:flutter_unit/painter_system/gallery_unit.dart';
+import 'package:flutter_unit/views/pages/user/user_page.dart';
 import 'package:flutter_unit/views/pages/widget_home/home_drawer.dart';
 import 'package:flutter_unit/views/pages/widget_home/home_page.dart';
 
@@ -52,7 +52,7 @@ class _UnitNavigationState extends State<UnitNavigation> {
               HomePage(),
               GalleryUnit(),
               CollectPage(),
-              MePage(),
+              UserPage(),
             ],
           ),
         ),
@@ -90,7 +90,7 @@ class _UnitNavigationState extends State<UnitNavigation> {
   _onTapBottomNav(int index) {
     _controller.animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.linear);
     if (index == 2) {
-      BlocProvider.of<LikeWidgetBloc>(context).add(EventSetCollectData());
+      BlocProvider.of<LikeWidgetBloc>(context).add(EventLoadLikeData());
     }
   }
 }

@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_unit/storage/dao/widget_dao.dart';
 import 'package:flutter_unit/repositories/itf/widget_repository.dart';
 
 import 'like_event.dart';
@@ -22,12 +21,12 @@ class LikeWidgetBloc extends Bloc<LikeWidgetEvent, LikeWidgetState> {
     LikeWidgetEvent event,
   ) async* {
     if (event is ToggleLikeWidgetEvent) {
-      await repository.toggleCollect(event.id);
-      final widgets = await repository.loadCollectWidgets();
+      await repository.toggleLike(event.id);
+      final widgets = await repository.loadLikeWidgets();
       yield LikeWidgetState(widgets: widgets);
     }
-    if( event is EventSetCollectData){
-      final widgets = await repository.loadCollectWidgets();
+    if( event is EventLoadLikeData){
+      final widgets = await repository.loadLikeWidgets();
       yield LikeWidgetState(widgets: widgets);
     }
   }
